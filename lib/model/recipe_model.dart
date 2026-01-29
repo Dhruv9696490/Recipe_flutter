@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-
-class Category{
+class Category {
   String? idCategory;
   String? strCategory;
   String? strCategoryThumb;
@@ -17,5 +15,14 @@ class Category{
     strCategory = json['strCategory'];
     strCategoryThumb = json['strCategoryThumb'];
     strCategoryDescription = json['strCategoryDescription'];
+  }
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'idCategory': idCategory,
+      'strCategory': strCategory,
+      'strCategoryThumb': strCategoryThumb,
+      'strCategoryDescription': strCategoryDescription,
+    };
   }
 }

@@ -1,18 +1,24 @@
 
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:recipe2/RecipeViewModel.dart';
-import 'package:recipe2/category_screen.dart';
+import 'package:recipe2/view_model/recipe_view_model.dart';
+import 'package:recipe2/pages/category_screen.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  final dir = await getApplicationDocumentsDirectory();
+  Hive.defaultDirectory = dir.path;
+   
+
   runApp(
     MultiProvider(providers: [
       ChangeNotifierProvider(create: (_){
           return RecipeViewModel()..getAllRecipe();
       }),
     ],
-    child: const MyApp()),);
+    child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
