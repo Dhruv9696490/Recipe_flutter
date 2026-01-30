@@ -5,7 +5,7 @@ import '../model/recipe_model.dart';
 
 class RecipeViewModel extends ChangeNotifier {
   final RecipeApi _recipeApi = RecipeApi();
-  final Box box = Hive.box(name: "recipes");
+  final Box box = Hive.box("recipes");
   List<Category> _recipeData = [];
   List<Category> get recipeData => _recipeData;
   bool _loading = false;
@@ -13,24 +13,22 @@ class RecipeViewModel extends ChangeNotifier {
   String _error = "";
   String get error => _error;
   Future<void> getAllRecipe() async {
+    print("loading started");
     _loading = true;
     _error = "";
     notifyListeners();
     try {
       _recipeData = await _recipeApi.getAllRecipe();
       box.clear();
-      box.write(() {
-        for (int i = 0; i < _recipeData.length; i++) {
-          box.put(i.toString(), _recipeData[i].toJson());
-        }
-      });
+      for (int i = 0; i < _recipeData.length; i++) {
+        box.put(i.toString(), _recipeData[i].toJson());
+      }
     } on Exception catch (e) {
       if (box.isNotEmpty) {
-        box.read(() {
-          for (int i = 0; i < box.length; i++) {
-            _recipeData.add(Category.fromJson(box.get(i.toString())));
-          }
-        });
+        for (int i = 0; i < box.length; i++) {
+          print("hey  ---->>>> $i ${Category.fromJson(box.get(i.toString()))}");
+          _recipeData.add(Category.fromJson(box.get(i.toString())));
+        }
       } else {
         _error = e.toString();
       }

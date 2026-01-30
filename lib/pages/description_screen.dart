@@ -20,7 +20,7 @@ class DescriptionScreen extends StatelessWidget {
           children: [
             Expanded(flex: 1, child: Card(margin: EdgeInsets.all(16),
             shadowColor: Colors.red[200],
-            elevation: 50,
+            elevation: 10,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(70)),
                 color: Colors.red[50],child: Image.network(category.strCategoryThumb ??"",fit: BoxFit.contain,))),
             Expanded(
@@ -28,7 +28,7 @@ class DescriptionScreen extends StatelessWidget {
               child: Scrollbar(
                 child: SingleChildScrollView(
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.fromLTRB(16, 8, 8, 8),
                     child: Text(category.strCategoryDescription ?? "",style: TextStyle(
                       fontSize: 24
                     ),),

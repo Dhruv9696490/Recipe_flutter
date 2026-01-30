@@ -10,15 +10,15 @@ class Category {
         this.strCategoryThumb,
         this.strCategoryDescription});
 
-  Category.fromJson(Map<String, dynamic> json) {
+  Category.fromJson(Map<dynamic, dynamic> json) {
     idCategory = json['idCategory'];
     strCategory = json['strCategory'];
     strCategoryThumb = json['strCategoryThumb'];
     strCategoryDescription = json['strCategoryDescription'];
   }
 
-  Map<String, dynamic> toJson() {
-    return <String, dynamic>{
+  Map<dynamic, dynamic> toJson() {
+    return <dynamic, dynamic>{
       'idCategory': idCategory,
       'strCategory': strCategory,
       'strCategoryThumb': strCategoryThumb,
