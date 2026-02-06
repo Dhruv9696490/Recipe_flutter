@@ -13,7 +13,6 @@ class RecipeViewModel extends ChangeNotifier {
   String _error = "";
   String get error => _error;
   Future<void> getAllRecipe() async {
-    print("loading started");
     _loading = true;
     _error = "";
     notifyListeners();
@@ -26,7 +25,6 @@ class RecipeViewModel extends ChangeNotifier {
     } on Exception catch (e) {
       if (box.isNotEmpty) {
         for (int i = 0; i < box.length; i++) {
-          print("hey  ---->>>> $i ${Category.fromJson(box.get(i.toString()))}");
           _recipeData.add(Category.fromJson(box.get(i.toString())));
         }
       } else {

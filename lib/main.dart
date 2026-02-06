@@ -13,7 +13,7 @@ void main() async {
       providers: [
         ChangeNotifierProvider(
           create: (_) {
-            return RecipeViewModel()..getAllRecipe();
+            return RecipeViewModel();
           },
         ),
       ],

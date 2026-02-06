@@ -3,8 +3,19 @@ import 'package:provider/provider.dart';
 import 'package:recipe2/view_model/recipe_view_model.dart';
 import 'package:recipe2/pages/description_screen.dart';
 
-class CategoryScreen extends StatelessWidget {
+class CategoryScreen extends StatefulWidget {
   const CategoryScreen({super.key});
+
+  @override
+  State<CategoryScreen> createState() => _CategoryScreenState();
+}
+
+class _CategoryScreenState extends State<CategoryScreen> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<RecipeViewModel>().getAllRecipe();
+  }
 
   @override
   Widget build(BuildContext context) {
